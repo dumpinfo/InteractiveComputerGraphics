@@ -177,6 +177,8 @@ void reshape(GLsizei ww, GLsizei hh)
 
 int main(int argc, char** argv)
 {
+    glewExperimental = GL_TRUE; 
+    glewInit();
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH);
     glutInitWindowSize(512, 512);
