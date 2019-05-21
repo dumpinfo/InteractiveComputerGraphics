@@ -1,0 +1,47 @@
+<html><!-- saved from url=(0116)https://www.cs.unm.edu/~angel/book/interactive_computer_graphics/sixth_edition/code/webgl/6e/chapter02/chap2ex4.html --><meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+
+<style type="text/css">
+    canvas { background: blue; }
+</style>
+
+<script id="vertex-shader" type="x-shader/x-vertex">
+
+attribute vec3 vPosition;
+attribute vec3 vColor;
+varying vec4 color;
+
+void
+main()
+{
+    gl_Position = vec4(vPosition, 1.0);
+    color = vec4(vColor, 1.0);
+}
+</script>
+
+<script id="fragment-shader" type="x-shader/x-fragment">
+
+#ifdef GL_ES
+precision highp float;
+#endif
+
+
+varying vec4 color;
+
+void
+main()
+{
+    gl_FragColor = color;
+}
+</script>
+
+<script type="text/javascript" src="../../../../../../../../../https@www.cs.unm.edu\~angel\book\interactive_computer_graphics\sixth_edition\code\webgl\6e\common\webgl-utils.js"></script>
+<script type="text/javascript" src="../../../../../../../../../https@www.cs.unm.edu\~angel\book\interactive_computer_graphics\sixth_edition\code\webgl\6e\common\initshaders.js"></script>
+<script type="text/javascript" src="../../../../../../../../../https@www.cs.unm.edu\~angel\book\interactive_computer_graphics\sixth_edition\code\webgl\6e\common\angel.js"></script>
+<script type="text/javascript" src="../../../../../../../../../https@www.cs.unm.edu\~angel\book\interactive_computer_graphics\sixth_edition\code\webgl\6e\chapter02\chap2ex4.js"></script>
+
+<body>
+<canvas id="gl-canvas" width="512"" height="512"
+Oops ... your browser doesn't support the HTML5 canvas element
+</canvas>
+</body>
+</html>

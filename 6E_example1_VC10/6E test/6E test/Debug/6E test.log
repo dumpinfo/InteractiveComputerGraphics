@@ -1,0 +1,30 @@
+﻿Build started 3/19/2011 11:25:06 AM.
+     1>Project "C:\Documents and Settings\Ed Angel\My Documents\Visual Studio 2010\Projects\6E test\6E test\6E test.vcxproj" on node 2 (build target(s)).
+     1>InitializeBuildStatus:
+         Creating "Debug\6E test.unsuccessfulbuild" because "AlwaysCreate" was specified.
+       ClCompile:
+         C:\Program Files\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt ..\CODE\example1.cpp
+         example1.cpp
+     1>c:\documents and settings\ed angel\my documents\visual studio 2010\projects\6e test\code\angel.h(65): warning C4305: 'initializing' : truncation from 'double' to 'const GLfloat'
+     1>c:\documents and settings\ed angel\my documents\visual studio 2010\projects\6e test\code\mat.h(698): warning C4244: '=' : conversion from 'double' to 'GLfloat', possible loss of data
+     1>c:\documents and settings\ed angel\my documents\visual studio 2010\projects\6e test\code\mat.h(699): warning C4244: '=' : conversion from 'double' to 'GLfloat', possible loss of data
+     1>c:\documents and settings\ed angel\my documents\visual studio 2010\projects\6e test\code\mat.h(700): warning C4244: '=' : conversion from 'double' to 'GLfloat', possible loss of data
+     1>c:\documents and settings\ed angel\my documents\visual studio 2010\projects\6e test\code\mat.h(721): warning C4244: '=' : conversion from 'double' to 'GLfloat', possible loss of data
+     1>c:\documents and settings\ed angel\my documents\visual studio 2010\projects\6e test\code\mat.h(723): warning C4244: '=' : conversion from 'double' to 'GLfloat', possible loss of data
+     1>c:\documents and settings\ed angel\my documents\visual studio 2010\projects\6e test\code\mat.h(726): warning C4244: '=' : conversion from 'double' to 'GLfloat', possible loss of data
+     1>c:\documents and settings\ed angel\my documents\visual studio 2010\projects\6e test\code\mat.h(742): warning C4244: '=' : conversion from 'double' to 'GLfloat', possible loss of data
+       Link:
+         C:\Program Files\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Documents and Settings\Ed Angel\My Documents\Visual Studio 2010\Projects\6E test\Debug\6E test.exe" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib freeglut.lib glew32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\6E test.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Documents and Settings\Ed Angel\My Documents\Visual Studio 2010\Projects\6E test\Debug\6E test.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Documents and Settings\Ed Angel\My Documents\Visual Studio 2010\Projects\6E test\Debug\6E test.lib" /MACHINE:X86 Debug\example1.obj
+         Debug\InitShader.obj
+         LINK : C:\Documents and Settings\Ed Angel\My Documents\Visual Studio 2010\Projects\6E test\Debug\6E test.exe not found or not built by the last incremental link; performing full link
+         6E test.vcxproj -> C:\Documents and Settings\Ed Angel\My Documents\Visual Studio 2010\Projects\6E test\Debug\6E test.exe
+       Manifest:
+         C:\Program Files\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"C:\Documents and Settings\Ed Angel\My Documents\Visual Studio 2010\Projects\6E test\Debug\6E test.exe;#1" /manifest "Debug\6E test.exe.intermediate.manifest"
+       FinalizeBuildStatus:
+         Deleting file "Debug\6E test.unsuccessfulbuild".
+         Touching "Debug\6E test.lastbuildstate".
+     1>Done Building Project "C:\Documents and Settings\Ed Angel\My Documents\Visual Studio 2010\Projects\6E test\6E test\6E test.vcxproj" (build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:00.96

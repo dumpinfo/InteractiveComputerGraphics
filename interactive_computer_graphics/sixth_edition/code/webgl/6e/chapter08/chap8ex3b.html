@@ -1,0 +1,64 @@
+<html><!-- saved from url=(0117)https://www.cs.unm.edu/~angel/book/interactive_computer_graphics/sixth_edition/code/webgl/6e/chapter08/chap8ex3b.html --><meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+
+
+<button id = "Button1">Decrease Angle</button> 
+<button id = "Button2">Increase Angle</button>  
+
+<p></p>
+
+<p>
+<select id = "mymenu" size = "11">
+	<option value = "0">Torso</option>
+	<option value = "1">Head1</option>
+	<option value = "2">Head2</option>
+	<option value = "3">Right Upper Arm</option>
+    <option value = "4">Left Upper Arm</option>
+    <option value = "5">Right Upper Leg</option>
+	<option value = "6">Left Upper Leg</option>
+	<option value = "7">Right Lower Arm</option>
+	<option value = "8">Left Lower Arm</option>
+    <option value = "9">Right Lower Leg</option>
+    <option value = "10">Left Lower Leg</option>
+</select>
+</p>
+
+<script id="vertex-shader" type="x-shader/x-vertex">
+
+attribute  vec4 vPosition;
+
+uniform mat4 ModelView;
+uniform mat4 Projection;
+
+void main() 
+{
+    gl_Position = Projection * ModelView * vPosition;
+} 
+</script>
+
+<script id="fragment-shader" type="x-shader/x-fragment">
+
+#ifdef GL_ES
+precision highp float;
+#endif
+
+void
+main()
+{
+    gl_FragColor = vec4(0.0, 0.0, 0.0, 1.0);;
+
+}
+</script>
+
+
+
+<script type="text/javascript" src="../../../../../../../../../https@www.cs.unm.edu\~angel\book\interactive_computer_graphics\sixth_edition\code\webgl\6e\common\webgl-utils.js"></script>
+<script type="text/javascript" src="../../../../../../../../../https@www.cs.unm.edu\~angel\book\interactive_computer_graphics\sixth_edition\code\webgl\6e\common\initshaders.js"></script>
+<script type="text/javascript" src="../../../../../../../../../https@www.cs.unm.edu\~angel\book\interactive_computer_graphics\sixth_edition\code\webgl\6e\chapter08\chap8ex3b.js"></script>
+<script type="text/javascript" src="../../../../../../../../../https@www.cs.unm.edu\~angel\book\interactive_computer_graphics\sixth_edition\code\webgl\6e\common\glmatrixea.js"></script>
+
+<body>
+<canvas id="gl-canvas" width="512"" height="512"
+Oops ... your browser doesn't support the HTML5 canvas element
+</canvas>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html><!-- saved from url=(0112)https://www.cs.unm.edu/~angel/book/interactive_computer_graphics/sixth_edition/code/webgl/code/test/sprite1.html --><meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+
+<html>
+
+<script id="vertex-shader1" type="x-shader/x-vertex">
+
+attribute  vec4 vPosition;
+
+void main()
+{
+    gl_Position = vPosition;
+}
+</script>
+
+<script id="vertex-shader2" type="x-shader/x-vertex">
+
+attribute vec4 vPosition;
+
+void main()
+{
+gl_PointSize = 64.0;
+
+gl_Position = vPosition;
+
+}
+</script>
+
+<script id="fragment-shader1" type="x-shader/x-fragment">
+
+precision mediump float;
+
+void
+main()
+{
+    gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);
+
+}
+</script>
+<script id="fragment-shader2" type="x-shader/x-fragment">
+
+precision mediump float;
+uniform float theta;
+
+uniform sampler2D texture;
+
+void main()
+{
+    float x = 0.5+cos(theta)*(gl_PointCoord.x-0.5)-sin(theta)*(gl_PointCoord.y-0.5);
+    float y = 0.5+sin(theta)*(gl_PointCoord.x-0.5)+cos(theta)*(gl_PointCoord.y-0.5);
+
+    vec4 texColor = texture2D( texture, vec2(x, y));
+    if(texColor.w < 0.1) discard;
+    gl_FragColor = texColor;
+}
+</script>
+
+<script type="text/javascript" src="../../../../../../../../../https@www.cs.unm.edu\~angel\book\interactive_computer_graphics\sixth_edition\code\webgl\code\common\webgl-utils.js"></script>
+<script type="text/javascript" src="../../../../../../../../../https@www.cs.unm.edu\~angel\book\interactive_computer_graphics\sixth_edition\code\webgl\code\common\initshaders.js"></script>
+<script type="text/javascript" src="../../../../../../../../../https@www.cs.unm.edu\~angel\book\interactive_computer_graphics\sixth_edition\code\webgl\code\common\mv.js"></script>
+<script type="text/javascript" src="../../../../../../../../../https@www.cs.unm.edu\~angel\book\interactive_computer_graphics\sixth_edition\code\webgl\code\test\sprite1.js"></script>
+
+<body>
+<canvas id="gl-canvas" width="1024" height="1024">
+Oops ... your browser doesn't support the HTML5 canvas element
+</canvas>
+</body>
+</html>

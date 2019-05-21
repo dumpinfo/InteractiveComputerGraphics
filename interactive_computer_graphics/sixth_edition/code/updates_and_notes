@@ -1,0 +1,43 @@
+The code in the examples has been updated to correct some errors that MacOSX was not sensitve to but caused problems on many linux and Windows installations. 
+
+Some of the files in /include and /Common needed changes:
+
+The transpose function in mat.h has been changed. It was doing nothing.
+
+The LookAt function in mat.h has been changed due to some issues with one of the constructors.
+
+I will be adding a NormalMatrix function to mat.h in the near future.
+
+There seem to be some known problems with ftell that on some systems cause problems with readShaderSource in InitShader.cpp. Using the return value in the line 
+
+size = fread(buf, 1, size, fp);
+
+rather than just calling fread without a return value seems to have worked for thise users.
+
+If you are running Lion on a Mac, you cannot use GLUT if you want to use  OpenGL 3.2. One option is to switch from GLUT to GLFW. The switch is very simple. Just download GLFW from the Web and run
+
+make cocoa
+sudo make cocoa-install
+
+to create the glfw library. To get OpenGL 3.2 you must have upgraded to Xcode 4. To have the include file glfw.h to include gl3.h instead of gl.h and set the GLFW_NO_GLU flag add the iines 
+
+#define GLFW_NO_GLU
+#define  GLFW_INCLUDE_GL3
+
+to Angel.h and the lines 
+
+    glfwOpenWindowHint(GLFW_OPENGL_VERSION_MAJOR, 3);
+    glfwOpenWindowHint(GLFW_OPENGL_VERSION_MINOR, 2);
+    glfwOpenWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+
+to your application
+
+Your makefile should have the libraries and frameworks
+
+-l glfw -framework OpenGL -framework Cocoa
+
+The GLFW calls are very similar to GLUT and GLFW also runs on Windows and Linux.
+
+Changee "r" to "rb" in fopen in InitShader to force reading as binary instead of asci. Due to differences in eol characters, Windows sometimes did not read shaders correctly.
+
+Removed divsion by vPostition.w in vertex shader in aexample a5.

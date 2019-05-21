@@ -1,0 +1,52 @@
+<!DOCTYPE html><!-- saved from url=(0117)https://www.cs.unm.edu/~angel/book/interactive_computer_graphics/sixth_edition/code/webgl/code/test/pointSprite6.html --><meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+<title>Point Sprite 6</title>
+
+<script id="vertex-shader" type="x-shader/x-vertex">
+attribute vec4 vPosition;
+
+void
+main()
+{
+    gl_PointSize = 100.0*(0.5+vPosition.z);
+    //gl_PointSize = 100.0;
+
+    gl_Position = vec4(vPosition.x, vPosition.y, vPosition.z, 1.0);
+}
+</script>
+
+<script id="fragment-shader" type="x-shader/x-fragment">
+
+precision mediump float;
+
+uniform float theta;
+
+void
+main()
+{
+    vec3 light = vec3(sin(0.1*theta), cos(0.1*theta), 1.0);
+    light = normalize(light);
+    float x = 2.0*(gl_PointCoord.x - 0.5);
+    float y = 2.0*(gl_PointCoord.y - 0.5);
+    float z = 1.0 - x*x - y*y;
+    if(z <= 0.0)  discard;
+    z = sqrt(z);
+    gl_FragColor = dot(light, vec3(x,y,z))*vec4(1.0, 0.0, 0.0, 1.0);
+}
+</script>
+
+<script type="text/javascript" src="../../../../../../../../../https@www.cs.unm.edu\~angel\book\interactive_computer_graphics\sixth_edition\code\webgl\code\common\webgl-utils.js"></script>
+<script type="text/javascript" src="../../../../../../../../../https@www.cs.unm.edu\~angel\book\interactive_computer_graphics\sixth_edition\code\webgl\code\common\initshaders.js"></script>
+<script type="text/javascript" src="../../../../../../../../../https@www.cs.unm.edu\~angel\book\interactive_computer_graphics\sixth_edition\code\webgl\code\common\mv.js"></script>
+<script type="text/javascript" src="../../../../../../../../../https@www.cs.unm.edu\~angel\book\interactive_computer_graphics\sixth_edition\code\webgl\code\test\pointsprite6.js"></script>
+</head>
+
+<body>
+<canvas id="gl-canvas" width="1024" height="1024">
+Oops ... your browser doesn't support the HTML5 canvas element
+</canvas>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html><!-- saved from url=(0116)https://www.cs.unm.edu/~angel/book/interactive_computer_graphics/sixth_edition/code/webgl/code/test/pointSprite.html --><meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+<title>Point Sprite</title>
+
+<script id="vertex-shader" type="x-shader/x-vertex">
+attribute vec4 vPosition;
+uniform float theta;
+
+void
+main()
+{
+    float s = sin( 0.01*theta );
+    float c = cos( 0.01*theta );
+
+    gl_PointSize = 100.0;
+
+    gl_Position.x = -s * vPosition.y + c * vPosition.x;
+    gl_Position.y =  s * vPosition.x + c * vPosition.y;
+    gl_Position = vec4(gl_Position.x, gl_Position.y, 0.0, 1.0);
+}
+</script>
+
+<script id="fragment-shader" type="x-shader/x-fragment">
+
+precision mediump float;
+
+uniform sampler2D texture;
+uniform float angle;
+
+void
+main()
+{
+    vec2 rotatedCoord;
+
+    float s = sin(angle);
+    float c = cos(angle);
+    float cx = gl_PointCoord.x - 0.5;
+    float cy = gl_PointCoord.y - 0.5;
+    rotatedCoord.x = 0.5-s*cy + c*cx;
+    rotatedCoord.y = 0.5+s*cx + c*cy;
+    vec4 red = vec4( 1.0, 0.0, 0.0, 1.0 );
+    float x = 2.0*(rotatedCoord.x-0.5);
+    float y = 2.0*(rotatedCoord.y-0.5);
+    gl_FragColor = red*vec4(texture2D( texture, rotatedCoord ).xyz, 1.0-x*x-y*y);
+}
+</script>
+
+<script type="text/javascript" src="../../../../../../../../../https@www.cs.unm.edu\~angel\book\interactive_computer_graphics\sixth_edition\code\webgl\code\common\webgl-utils.js"></script>
+<script type="text/javascript" src="../../../../../../../../../https@www.cs.unm.edu\~angel\book\interactive_computer_graphics\sixth_edition\code\webgl\code\common\initshaders.js"></script>
+<script type="text/javascript" src="../../../../../../../../../https@www.cs.unm.edu\~angel\book\interactive_computer_graphics\sixth_edition\code\webgl\code\common\mv.js"></script>
+<script type="text/javascript" src="../../../../../../../../../https@www.cs.unm.edu\~angel\book\interactive_computer_graphics\sixth_edition\code\webgl\code\test\pointsprite.js"></script>
+</head>
+
+<body>
+<canvas id="gl-canvas" width="512" height="512">
+Oops ... your browser doesn't support the HTML5 canvas element
+</canvas>
+</body>
+</html>

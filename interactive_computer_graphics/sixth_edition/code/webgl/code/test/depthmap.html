@@ -1,0 +1,53 @@
+<!DOCTYPE html><!-- saved from url=(0113)https://www.cs.unm.edu/~angel/book/interactive_computer_graphics/sixth_edition/code/webgl/code/test/depthMap.html --><meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+
+<html>
+
+<script id="vertex-shader" type="x-shader/x-vertex">
+
+attribute  vec4 vPosition;
+
+uniform mat4 instanceMatrix;
+uniform mat4 lightProjectionMatrix;
+uniform mat4 lightViewMatrix;
+
+void main()
+{
+
+
+    vec4 objLightPosition = lightProjectionMatrix*lightViewMatrix*instanceMatrix*vPosition;
+
+    gl_Position = objLightPosition;
+
+}
+</script>
+
+<script id="fragment-shader" type="x-shader/x-fragment">
+
+precision mediump float;
+
+void
+main()
+{
+    gl_FragColor =  vec4(1.0-gl_FragCoord.z, 1.0-gl_FragCoord.z, 1.0-gl_FragCoord.z , 1.0);
+
+}
+</script>
+
+<script type="text/javascript" src="../../../../../../../../../https@www.cs.unm.edu\~angel\book\interactive_computer_graphics\sixth_edition\code\webgl\code\common\webgl-utils.js"></script>
+<script type="text/javascript" src="../../../../../../../../../https@www.cs.unm.edu\~angel\book\interactive_computer_graphics\sixth_edition\code\webgl\code\common\initshaders.js"></script>
+<script type="text/javascript" src="../../../../../../../../../https@www.cs.unm.edu\~angel\book\interactive_computer_graphics\sixth_edition\code\webgl\code\common\mv.js"></script>
+<script type="text/javascript" src="../../../../../../../../../https@www.cs.unm.edu\~angel\book\interactive_computer_graphics\sixth_edition\code\webgl\code\test\depthmap.js"></script>
+
+
+<body>
+<canvas id="gl-canvas" width="512" height="512">
+Oops ... your browser doesn't support the HTML5 canvas element
+</canvas>
+<div>
+<button id = "ButtonX">Rotate X</button>
+<button id = "ButtonY">Rotate Y</button>
+<button id = "ButtonZ">Rotate Z</button>
+<button id = "ButtonT">Toggle Cube Rotation</button>
+</div>
+</body>
+</html>

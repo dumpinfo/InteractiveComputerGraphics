@@ -1,0 +1,53 @@
+<!DOCTYPE html><!-- saved from url=(0113)https://www.cs.unm.edu/~angel/book/interactive_computer_graphics/sixth_edition/code/webgl/code/class/gasket6.html --><meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+<title>3D Sierpinski Gasket</title>
+
+
+<script id="vertex-shader" type="x-shader/x-vertex">
+attribute vec3 vPosition;
+attribute vec3 vColor;
+varying vec4 color;
+uniform float time;
+
+void
+main()
+{
+    float d = sqrt(vPosition.x*vPosition.x+vPosition.y*vPosition.y);
+    vec3 Pos;
+    float theta = 1.0;
+    Pos.x = vPosition.x*cos(d*theta)-vPosition.y*sin(d*theta);
+    Pos.y = vPosition.y*cos(d*theta)+vPosition.x*sin(d*theta);
+    Pos.z = vPosition.z;
+    //gl_Position = vec4((1.0+0.5*sin(time))*vPosition, 1.0);
+    gl_Position = vec4((1.0+0.5*sin(time))*Pos, 1.0);
+    color = vec4(vColor, 1.0);
+}
+</script>
+
+<script id="fragment-shader" type="x-shader/x-fragment">
+precision mediump float;
+   
+varying vec4 color;
+
+void
+main()
+{
+    gl_FragColor = color;
+}
+</script>
+
+<script type="text/javascript" src="../../../../../../../../../https@www.cs.unm.edu\~angel\book\interactive_computer_graphics\sixth_edition\code\webgl\code\common\webgl-utils.js"></script>
+<script type="text/javascript" src="../../../../../../../../../https@www.cs.unm.edu\~angel\book\interactive_computer_graphics\sixth_edition\code\webgl\code\common\initshaders.js"></script>
+<script type="text/javascript" src="../../../../../../../../../https@www.cs.unm.edu\~angel\book\interactive_computer_graphics\sixth_edition\code\webgl\code\common\mv.js"></script>
+<script type="text/javascript" src="../../../../../../../../../https@www.cs.unm.edu\~angel\book\interactive_computer_graphics\sixth_edition\code\webgl\code\class\gasket6.js"></script>
+</head>   
+
+<body>
+<canvas id="gl-canvas" width="512" height="512">
+Oops ... your browser doesn't support the HTML5 canvas element
+</canvas>
+</body>
+</html>

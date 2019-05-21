@@ -1,0 +1,73 @@
+<!DOCTYPE html><!-- saved from url=(0120)https://www.cs.unm.edu/~angel/book/interactive_computer_graphics/sixth_edition/code/webgl/code/geometry/teapotTest5.html --><meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+
+<html>
+
+
+<button id = "ButtonX">Rotate X</button>
+<button id = "ButtonY">Rotate Y</button>
+<button id = "ButtonZ">Rotate Z</button>
+<button id = "ButtonT">Toggle Rotation</button>
+
+<script id="vertex-shader" type="x-shader/x-vertex">
+
+attribute  vec4 vPosition;
+attribute  vec4 vColor;
+
+varying vec4 fColor;
+
+
+varying vec4 objPosition;
+
+uniform mat4 modelViewMatrix;
+uniform mat4 projectionMatrix;
+
+
+void main()
+{
+
+    gl_Position = projectionMatrix * modelViewMatrix * vPosition;
+    fColor = vColor;
+
+    objPosition = vPosition;
+
+
+}
+</script>
+
+<script id="fragment-shader" type="x-shader/x-fragment">
+
+precision mediump float;
+
+varying vec4 fColor;
+
+varying vec4 objPosition;
+
+void
+main()
+{
+
+  int x = (int(255.0*(objPosition.x+1.0))/16);
+  int y = (int(255.0*(objPosition.y+1.0))/16);
+  int z = (int(255.0*(objPosition.z+1.0))/16);
+
+  if(2*(x/2) == x && 2*(y/2) == y && !(2*(z/2) == z))
+    gl_FragColor = vec4(1.0, 0.5, 0.0, 1.0);
+
+  else gl_FragColor = vec4(0.1, 0.1, 1.0, 1.0);
+
+}
+</script>
+
+<script type="text/javascript" src="../../../../../../../../../https@www.cs.unm.edu\~angel\book\interactive_computer_graphics\sixth_edition\code\webgl\code\common\webgl-utils.js"></script>
+<script type="text/javascript" src="../../../../../../../../../https@www.cs.unm.edu\~angel\book\interactive_computer_graphics\sixth_edition\code\webgl\code\common\initshaders.js"></script>
+<script type="text/javascript" src="../../../../../../../../../https@www.cs.unm.edu\~angel\book\interactive_computer_graphics\sixth_edition\code\webgl\code\common\mv.js"></script>
+<script type="text/javascript" src="../../../../../../../../../https@www.cs.unm.edu\~angel\book\interactive_computer_graphics\sixth_edition\code\webgl\code\geometry\geometry.js"></script>
+<script type="text/javascript" src="../../../../../../../../../https@www.cs.unm.edu\~angel\book\interactive_computer_graphics\sixth_edition\code\webgl\code\geometry\teapotdata.js"></script>
+<script type="text/javascript" src="../../../../../../../../../https@www.cs.unm.edu\~angel\book\interactive_computer_graphics\sixth_edition\code\webgl\code\geometry\teapottest5.js"></script>
+
+<body>
+<canvas id="gl-canvas" width="512" height="512">
+Oops ... your browser doesn't support the HTML5 canvas element
+</canvas>
+</body>
+</html>

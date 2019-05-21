@@ -1,0 +1,59 @@
+<!DOCTYPE html><!-- saved from url=(0117)https://www.cs.unm.edu/~angel/book/interactive_computer_graphics/sixth_edition/code/webgl/code/test/pointSprite7.html --><meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+<title>Point Sprite 6</title>
+
+<script id="vertex-shader" type="x-shader/x-vertex">
+attribute vec3 vPosition;
+attribute vec3 vColor;
+varying vec3 fColor;
+
+void
+main()
+{
+
+    gl_PointSize = 30.0*(0.5+vPosition.z);
+    //gl_PointSize = 100.0;
+    fColor = vColor;
+
+    gl_Position = vec4(vPosition, 1.0);
+}
+</script>
+
+<script id="fragment-shader" type="x-shader/x-fragment">
+
+precision mediump float;
+
+uniform float theta;
+varying vec3 fColor;
+
+void
+main()
+{
+    vec3 light = vec3(sin(0.1*theta), 0.0, cos(0.1*theta));
+    light = normalize(light);
+    vec3 normal;
+    normal.x = 2.0*(gl_PointCoord.x - 0.5);
+    normal.y = 2.0*(gl_PointCoord.y - 0.5);
+    normal.z = 1.0 - normal.x*normal.x - normal.y*normal.y;
+    if(normal.z <= 0.0)  discard;
+    normal.z = sqrt(normal.z);
+    gl_FragColor = vec4(dot(light, normal)*fColor, 1.0);
+    //gl_FragColor = fColor;
+}
+</script>
+
+<script type="text/javascript" src="../../../../../../../../../https@www.cs.unm.edu\~angel\book\interactive_computer_graphics\sixth_edition\code\webgl\code\common\webgl-utils.js"></script>
+<script type="text/javascript" src="../../../../../../../../../https@www.cs.unm.edu\~angel\book\interactive_computer_graphics\sixth_edition\code\webgl\code\common\initshaders.js"></script>
+<script type="text/javascript" src="../../../../../../../../../https@www.cs.unm.edu\~angel\book\interactive_computer_graphics\sixth_edition\code\webgl\code\common\mv.js"></script>
+<script type="text/javascript" src="../../../../../../../../../https@www.cs.unm.edu\~angel\book\interactive_computer_graphics\sixth_edition\code\webgl\code\test\pointsprite7.js"></script>
+</head>
+
+<body>
+<canvas id="gl-canvas" width="1024" height="1024">
+Oops ... your browser doesn't support the HTML5 canvas element
+</canvas>
+</body>
+</html>

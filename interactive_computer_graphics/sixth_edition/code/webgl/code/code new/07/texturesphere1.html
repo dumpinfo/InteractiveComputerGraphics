@@ -1,0 +1,75 @@
+<!DOCTYPE html><!-- saved from url=(0128)https://www.cs.unm.edu/~angel/book/interactive_computer_graphics/sixth_edition/code/webgl/code/code%20new/07/textureSphere1.html --><meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+
+<html>
+
+<script id="vertex-shader" type="x-shader/x-vertex">
+
+// assume both position and normal are in homogeneous form
+
+attribute vec4 vPosition;
+
+uniform mat4 modelViewMatrix;
+uniform mat4 projectionMatrix;
+
+varying float s, t;
+
+void
+main()
+{
+
+    float pi = acos(0.0);
+
+    s= 0.5*acos(vPosition.x)/pi;
+
+    t = 0.5*asin(vPosition.y/sqrt(1.0-vPosition.x*vPosition.x))/pi;
+
+    gl_Position = projectionMatrix * modelViewMatrix * vPosition;
+
+
+}
+</script>
+
+<script id="fragment-shader" type="x-shader/x-fragment">
+
+precision mediump float;
+
+varying float s, t;
+uniform sampler2D texture;
+
+void
+main()
+{
+
+    gl_FragColor = texture2D( texture, vec2(s, t));
+
+}
+</script>
+
+<p> </p>
+<button id = "Button0">Increase R</button>
+<button id = "Button1">Decrease R</button>
+
+<p> </p>
+<button id = "Button2">Increase theta</button>
+<button id = "Button3">Decrease theta</button>
+<button id = "Button4">Increase phi</button>
+<button id = "Button5">Decrease phi</button>
+<p> </p>
+<button id = "Button6">Increase Subdivisions</button>
+<button id = "Button7">Decrease Subdivisions</button>
+
+<p></p>
+
+<script type="text/javascript" src="../../../../../../../../../../https@www.cs.unm.edu\~angel\book\interactive_computer_graphics\sixth_edition\code\webgl\code\code%20new\common\webgl-utils.js"></script>
+<script type="text/javascript" src="../../../../../../../../../../https@www.cs.unm.edu\~angel\book\interactive_computer_graphics\sixth_edition\code\webgl\code\code%20new\common\initshaders.js"></script>
+
+<script type="text/javascript" src="../../../../../../../../../../https@www.cs.unm.edu\~angel\book\interactive_computer_graphics\sixth_edition\code\webgl\code\code%20new\common\mvnew.js"></script>
+<script type="text/javascript" src="../../../../../../../../../../https@www.cs.unm.edu\~angel\book\interactive_computer_graphics\sixth_edition\code\webgl\code\code%20new\07\texturesphere1.js"></script>
+
+<body>
+<canvas id="gl-canvas" width="1024" height="1024">
+Oops ... your browser doesn't support the HTML5 canvas element
+</canvas>
+<img id = "texImage" src = "sa2011_black.gif" hidden></img>
+</body>
+</html>

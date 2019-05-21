@@ -1,0 +1,113 @@
+<!DOCTYPE html><!-- saved from url=(0114)https://www.cs.unm.edu/~angel/book/interactive_computer_graphics/sixth_edition/code/webgl/code/test/shadowMap.html --><meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+
+<html>
+
+<script id="vertex-shader-1" type="x-shader/x-vertex">
+
+// first vertex shader used to compute view from camera
+
+attribute  vec4 vPosition;
+
+uniform mat4 instanceMatrix;
+uniform mat4 projectionMatrix;
+uniform mat4 modelViewMatrix;
+
+void main()
+{
+
+    gl_Position = projectionMatrix*modelViewMatrix*instanceMatrix*vPosition;
+
+}
+</script>
+
+<script id="fragment-shader-1" type="x-shader/x-fragment">
+
+// fragment shader outputs fragment depth in rgb components.
+
+precision mediump float;
+
+void
+main()
+{
+    gl_FragColor =  vec4(gl_FragCoord.z, gl_FragCoord.z, gl_FragCoord.z , 1.0);
+
+}
+</script>
+
+<script id="vertex-shader-2" type="x-shader/x-vertex">
+
+attribute vec4 vPosition;
+attribute vec4 vColor;
+
+uniform mat4 instanceMatrix;
+uniform mat4 projectionMatrix;
+uniform mat4 modelViewMatrix;
+
+uniform mat4 lightProjectionMatrix;
+uniform mat4 lightViewMatrix;
+
+varying vec4 fColor;
+varying vec4 fLightViewPosition;
+
+void main()
+{
+  // shader computes position both from camera and light source
+
+  gl_Position = projectionMatrix*modelViewMatrix*instanceMatrix*vPosition;
+  fLightViewPosition = lightProjectionMatrix*lightViewMatrix*instanceMatrix*vPosition;
+  fColor = vColor;
+}
+</script>
+
+<script id="fragment-shader-2" type="x-shader/x-fragment">
+
+precision mediump float;
+
+varying vec4 fColor;
+varying vec4 fLightViewPosition;
+
+uniform sampler2D texture;
+
+void main()
+{
+    vec4 shadowColor = vec4(0.0, 0.0, 0.0, 1.0); //black
+
+  // rescale depths from [-1, 1] to texture coords in range [0, 1]
+  // convert from (x, y, z, w) values to (x/w, y/w, z/w)
+
+    vec3 shadowCoord = 0.5*fLightViewPosition.xyz/fLightViewPosition.w + 0.5;
+
+ // get depth from texture map
+
+    float depth = texture2D(texture, shadowCoord.xy).x;
+
+ //compare depth from camera with depth of fragment in camera space
+ // add small factor to control some of the aliasing
+
+    if(shadowCoord.z < depth + 0.005) gl_FragColor = fColor;
+      else gl_FragColor = shadowColor;
+
+  // use line below to display depth map
+  // gl_FragColor = vec4(depth, depth, depth, 1.0);
+}
+</script>
+
+<script type="text/javascript" src="../../../../../../../../../https@www.cs.unm.edu\~angel\book\interactive_computer_graphics\sixth_edition\code\webgl\code\common\webgl-utils.js"></script>
+<script type="text/javascript" src="../../../../../../../../../https@www.cs.unm.edu\~angel\book\interactive_computer_graphics\sixth_edition\code\webgl\code\common\initshaders.js"></script>
+<script type="text/javascript" src="../../../../../../../../../https@www.cs.unm.edu\~angel\book\interactive_computer_graphics\sixth_edition\code\webgl\code\common\mv.js"></script>
+<script type="text/javascript" src="../../../../../../../../../https@www.cs.unm.edu\~angel\book\interactive_computer_graphics\sixth_edition\code\webgl\code\test\shadowmap.js"></script>
+
+
+<body>
+<canvas id="gl-canvas" width="512" height="512">
+Oops ... your browser doesn't support the HTML5 canvas element
+</canvas>
+<div>
+<button id = "ButtonX">Rotate X</button>
+<button id = "ButtonY">Rotate Y</button>
+<button id = "ButtonZ">Rotate Z</button>
+<button id = "ButtonT">Toggle Cube Rotation</button>
+
+</div>
+</body>
+</html>
